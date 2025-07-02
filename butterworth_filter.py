@@ -10,6 +10,7 @@ import numpy as np
 from scipy.signal import butter, lfilter, freqz
 import matplotlib.pyplot as plt
 import pandas as pd
+import tkinter as tk
 
 df = pd.read_csv('C:/Users/gpe02/OneDrive/Documents/FluxCap/capTestmgh24Jun2025(Sheet1).csv');
 
@@ -57,9 +58,8 @@ t = np.linspace(0, T, n, endpoint=False)
 
 # Filter the data, and plot both the original and filtered signals.
 y = butter_lowpass_filter(data, cutoff, fs, order)
-ymax = y.max()
-ymin = y.min()
-divvision = (ymax - ymin)/100
+
+
 
 
 plt.subplot(2, 1, 2)
