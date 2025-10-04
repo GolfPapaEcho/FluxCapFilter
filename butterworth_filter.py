@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import tkinter as tk
 
+# Read in the data from CSV
+
 df = pd.read_csv('C:/Users/gpe02/OneDrive/Documents/FluxCap/capTestmgh24Jun2025(Sheet1).csv');
 
 

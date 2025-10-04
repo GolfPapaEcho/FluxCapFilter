@@ -1,0 +1,9 @@
+use mvc
+Open a window called HAL9000 - the main window for the program
+Spawns input data and output data file paths capture child window
+Spawns settings window w sample rate in ms & cutoff frequency
+run model
+model extracts DATA0_pF time using pandas
+model calculates sample frequency
+Spawns plots
+saves the output csv of time and DATA0_pF
