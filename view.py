@@ -28,9 +28,10 @@ class View(ttk.Frame):
         self.file_data = fd.askopenfilename(initialdir="C:/ti/Sensing Solutions EVM GUI-1.10.0/PC GUI/",
                                                             title="Select a file Dave",
                                                             filetypes=(("csv files", "*.csv"),("All Files", "*.*")))           
-    
+          
     def set_controller(self, controller):
         self.controller = controller
+    
     
  
        

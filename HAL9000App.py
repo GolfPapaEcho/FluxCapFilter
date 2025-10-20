@@ -11,7 +11,7 @@ class App(tk.Tk):
         self.title('HAL9000')
         self.iconbitmap('C:/Users/gpe02/OneDrive/Pictures/Screenshots/HAL9000.ico')
         #print(self.geometry())
-        self.geometry(newGeometry='400x300+100+100')
+        self.geometry(newGeometry='550x400+100+100')
          
         # create a model
         model = Model(r"C:\ti\Sensing Solutions EVM GUI-1.10.0\PC GUI\testdata.csv")

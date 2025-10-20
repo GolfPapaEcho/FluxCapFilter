@@ -26,7 +26,9 @@ class Model:
     
  
         self.cap_data = self.cap_data['DATA0_pF'].values
- 
+# %%
+        
+
             
 
     def butter_lowpass(cutoff, fs, order=5):
