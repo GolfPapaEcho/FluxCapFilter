@@ -11,7 +11,7 @@ class Controller:
         try:
 
             # start the model process
-            self.model.process(self.view.file_data)
+            self.model.filename = filename
 
             # show a success message
             self.view.show_success(f'The file {filename} has been processed Dave')

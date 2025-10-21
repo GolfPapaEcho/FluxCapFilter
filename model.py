@@ -11,7 +11,7 @@ Calculates gradient of cap data to get flow rate
 returns capacitance, time, filtered data and dC/dt
 
 """
-
+import csv
 import numpy as np
 from scipy.signal import butter, lfilter, freqz
 import matplotlib.pyplot as plt
@@ -22,27 +22,45 @@ import tkinter as tk
 
 class Model:
     def __init__(self, filename):
-        self.cap_data = pd.read_csv(filename)
-    
- 
+        self.filename = filename
+        # Filter requirements.
+        self.order = 6
+        self.fs = 20.0       # sample rate, Hz
+        self.cutoff = 0.1  # desired cutoff frequency of the filter, Hz
+        #self.cap_data = pd.read_csv(filename)
+        self.cap_data = pd.read_csv(self.filename)
+        #eg filename r"C:\ti\Sensing Solutions EVM GUI-1.10.0\PC GUI\testdata.csv"
         self.cap_data = self.cap_data['DATA0_pF'].values
-# %%
-        
+        num_data_points = len(self.cap_data)
+        #time_sv creates a vector of the time in ms. For data spaced at 50ms (20Hz).
+        time_sv = np.arange(0, (50*num_data_points), 50)
 
             
+        def butter_lowpass(cutoff, fs, order):
+            return butter(order, cutoff, fs=fs, btype='low', analog=False)
 
-    def butter_lowpass(cutoff, fs, order=5):
-        return butter(order, cutoff, fs=fs, btype='low', analog=False)
-
-        def butter_lowpass_filter(data, cutoff, fs, order=5):
-            b, a = butter_lowpass(cutoff, fs, order=order)
-            y = lfilter(b, a, data)
+        def butter_lowpass_filter(cap_data, cutoff, fs, order):
+            b, a = self.butter_lowpass(cutoff, fs, order=order)
+            y = lfilter(b, a, cap_data)
             return y
 
-    # Filter requirements.
-    order = 6
-    fs = 20.0       # sample rate, Hz
-    cutoff = 0.1  # desired cutoff frequency of the filter, Hz
+
+    
     
     # Get the filter coefficients so we can check its frequency response.
-    b, a = butter_lowpass(cutoff, fs, order)
+        b, a = butter_lowpass(self.cutoff, self.fs, self.order)
+        
+        # Plot the frequency response.
+        w, h = freqz(b, a, fs=self.fs, worN=8000)
+#plt.subplot(2, 1, 1)
+        plt.plot(w, np.abs(h), 'b')
+        plt.plot(self.cutoff, 0.5*np.sqrt(2), 'ko')
+        plt.axvline(self.cutoff, color='k')
+        plt.xlim(0, 0.01*self.fs)
+        plt.title("Lowpass Filter Frequency Response")
+        plt.xlabel('Frequency [Hz]')
+        plt.grid()
+        plt.show()
+            
+            
+        print(self.cap_data)

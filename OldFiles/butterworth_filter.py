@@ -40,7 +40,7 @@ b, a = butter_lowpass(cutoff, fs, order)
 
 # Plot the frequency response.
 w, h = freqz(b, a, fs=fs, worN=8000)
-plt.subplot(2, 1, 1)
+#plt.subplot(2, 1, 1)
 plt.plot(w, np.abs(h), 'b')
 plt.plot(cutoff, 0.5*np.sqrt(2), 'ko')
 plt.axvline(cutoff, color='k')

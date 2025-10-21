@@ -14,7 +14,7 @@ class App(tk.Tk):
         self.geometry(newGeometry='550x400+100+100')
          
         # create a model
-        model = Model(r"C:\ti\Sensing Solutions EVM GUI-1.10.0\PC GUI\testdata.csv")
+        model = Model(r"C:\ti\Sensing Solutions EVM GUI-1.10.0\PC GUI\tdata.csv")
 
         # create a view and place it on the root window
         view = View(self)
@@ -24,7 +24,7 @@ class App(tk.Tk):
         controller = Controller(model, view)
 
         # set the controller to view
-        view.set_controller(controller)
+        view.set_controller(controller.process())
 
 
 if __name__ == '__main__':
