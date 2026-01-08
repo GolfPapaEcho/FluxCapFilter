@@ -13,18 +13,17 @@ class App(tk.Tk):
         #print(self.geometry())
         self.geometry(newGeometry='550x400+100+100')
          
-        # create a model
-        model = Model(r"C:\ti\Sensing Solutions EVM GUI-1.10.0\PC GUI\tdata.csv")
-
         # create a view and place it on the root window
         view = View(self)
         view.grid(row=0, column=0, padx=10, pady=10)
 
         # create a controller
-        controller = Controller(model, view)
+        controller = Controller(view)
 
         # set the controller to view
-        view.set_controller(controller.process())
+        view.set_controller(controller)
+
+       
 
 
 if __name__ == '__main__':

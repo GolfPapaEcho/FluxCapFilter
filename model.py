@@ -64,3 +64,7 @@ class Model:
             
             
         print(self.cap_data)
+    
+    def show_success(self, filename):
+        message = f'The file {filename} has been processed Dave'     
+        showinfo(title='Success', message=message)

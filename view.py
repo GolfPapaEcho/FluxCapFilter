@@ -34,11 +34,9 @@ class View(ttk.Frame):
     
     def set_controller(self, controller):
         self.controller = controller
-    
-    
- 
-       
 
+    def show_error(self, error):
+        showinfo(title='Error', message=error)
 
 # Process button
 
