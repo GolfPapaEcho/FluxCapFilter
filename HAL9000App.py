@@ -18,10 +18,10 @@ class App(tk.Tk):
         view.grid(row=0, column=0, padx=10, pady=10)
 
         # create a controller
-        controller = Controller(view)
+        #controller = Controller(view)
 
         # set the controller to view
-        view.set_controller(controller)
+        #view.set_controller(controller)
 
        
 

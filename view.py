@@ -1,5 +1,5 @@
 #generate HAL9000 view
-
+import model
 import tkinter as tk
 from tkinter import Button, Label, ttk
 from tkinter.messagebox import showinfo
@@ -10,10 +10,9 @@ class View(ttk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
         
-    #set controller
+        #set controller
         self.controller = None        
-#create widgets
-        
+        self.model = None  
         
         self.filename_var = tk.StringVar()
         #Create widgets
@@ -24,14 +23,18 @@ class View(ttk.Frame):
         
         self.your_button = Button(self, text="Open File", command=self.get_file_data)
         self.your_button.pack(pady=20) 
+        
     def get_file_data(self):
-        self.filename_var = fd.askopenfilename(initialdir="C:/ti/Sensing Solutions EVM GUI-1.10.0/PC GUI/",
-                                                            title="Select a file Dave",
-                                                            filetypes=(("csv files", "*.csv"),("All Files", "*.*")))           
-          
-    
-
-    
+        self.filename_var = fd.askopenfilename(
+            initialdir="C:/ti/Sensing Solutions EVM GUI-1.10.0/PC GUI/",
+            title="Select a file Dave",
+            filetypes=(("csv files", "*.csv"),("All Files", "*.*"))
+            )           
+        if self.filename_var != '':
+                print("Controller: File selected is ", self.filename_var)
+                self.model = model.Model(self.filename_var)       
+                
+           
     def set_controller(self, controller):
         self.controller = controller
 
