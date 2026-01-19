@@ -62,7 +62,21 @@ class Model:
         plt.grid()
         plt.show()
             
-            
+        # Filter the data, and plot both the original and filtered signals.
+        y = butter_lowpass_filter(self.cap_data, self.cutoff, self.fs, 6) #6th degree = order hence number 6
+
+        plt.subplot(2, 1, 2)
+        plt.plot(time_sv, self.cap_data, 'b-', label='data')
+        plt.plot(time_sv, y, 'g-', linewidth=2, label='filtered data')
+        plt.xlabel('Time [sec]')
+        plt.grid()
+        plt.legend()
+
+        plt.subplots_adjust(hspace=0.35)
+        plt.show()    
+        
+        #write csv of filtered data
+        
         print(self.cap_data)
     
     def show_success(self, filename):
