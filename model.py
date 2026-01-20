@@ -12,6 +12,8 @@ returns capacitance, time, filtered data and dC/dt
 
 """
 import csv
+from datetime import datetime
+from tkinter.messagebox import showinfo
 import numpy as np
 from scipy.signal import butter, lfilter, freqz
 import matplotlib.pyplot as plt
@@ -76,8 +78,20 @@ class Model:
         plt.show()    
         
         #write csv of filtered data
-        
-        print(self.cap_data)
+        try:
+            now = datetime.now()
+            dTString = now.strftime("%d.%m.%Y.%H:%M:%S")
+            fileName = "~/Pressure/" + "EfluxCapacitor" + dTString + ".csv"
+            with open(fileName, 'w') as f:
+                writer = csv.writer(f, delimiter=",", lineterminator="\n")
+                writer.writerow(['Time/ms', 'Filtered Capacitance/pF', 'Ca[acitance/pF'])
+                for i in range(len(y)):
+                    writer.writerow([time_sv, y, self.cap_data])
+            f.close()
+        except KeyboardInterrupt:
+            f.close()
+            print('\n', "Exit on Ctrl-C: Good bye!")
+        #print(self.cap_data)
     
     def show_success(self, filename):
         message = f'The file {filename} has been processed Dave'     
