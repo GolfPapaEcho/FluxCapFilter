@@ -1,5 +1,5 @@
 #generate HAL9000 view
-import model
+from ModelChat import Model
 import tkinter as tk
 from tkinter import Button, Label, ttk
 from tkinter.messagebox import showinfo
@@ -12,7 +12,7 @@ class View(ttk.Frame):
         
         #set controller
         self.controller = None        
-        self.model = None  
+        self.Model = None  
         
         self.filename_var = tk.StringVar()
         #Create widgets
@@ -32,7 +32,7 @@ class View(ttk.Frame):
             )           
         if self.filename_var != '':
                 print("Controller: File selected is ", self.filename_var)
-                self.model = model.Model(self.filename_var)       
+                self.Model = Model(self.filename_var)       
                 
            
     def set_controller(self, controller):
