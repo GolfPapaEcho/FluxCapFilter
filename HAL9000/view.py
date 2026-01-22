@@ -1,0 +1,59 @@
+#generate HAL9000 view
+from ModelChat import Model
+import tkinter as tk
+from tkinter import Button, Label, ttk
+from tkinter.messagebox import showinfo
+from tkinter import filedialog as fd
+
+
+class View(ttk.Frame):
+    def __init__(self, parent):
+        super().__init__(parent)
+        
+        #set controller
+        self.controller = None        
+
+        self.Model = None  
+        
+        self.filename_var = tk.StringVar()
+        #Create widgets
+        self.your_label = Label(self, text = "I'm sorry Dave, there is a fault in the AE35 unit.",
+                                font=("Courier New", 12), bd=1, relief="sunken")
+        self.your_label.pack(pady=20)
+        
+        
+        self.your_button = Button(self, text="Open File", command=self.get_file_data)
+        self.your_button.pack(pady=20) 
+        
+    def get_file_data(self):
+        self.filename_var = fd.askopenfilename(
+            initialdir="C:/ti/Sensing Solutions EVM GUI-1.10.0/PC GUI/",
+            title="Select a file Dave",
+            filetypes=(("csv files", "*.csv"),("All Files", "*.*"))
+            )           
+        if self.filename_var != '':
+                print("Controller: File selected is ", self.filename_var)
+                self.Model = Model(self.filename_var)       
+                
+           
+    def set_controller(self, controller):
+        self.controller = controller
+
+    def show_error(self, error):
+        showinfo(title='Error', message=error)
+
+# Process button
+
+
+#def process_button_clicked(self):
+    #if self.controller:
+     #   self.controller.process(self.file_data)
+#process_button.pack(expand=True)           
+   
+    
+   
+    
+
+
+
+

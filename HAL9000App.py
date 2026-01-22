@@ -1,7 +1,7 @@
 import tkinter as tk
 from ModelChat import Model
 from view import View
-from controller import Controller
+#from controller import Controller
 
 
 class App(tk.Tk):
@@ -9,8 +9,10 @@ class App(tk.Tk):
         super().__init__()
 
         self.title('HAL9000')
-#       self.iconbitmap('C:/Users/gpe02/OneDrive/Pictures/Screenshots/HAL9000.ico')
-        #self.iconbitmap('/home/mike/FluxCapFilter/HAL9000.ico')
+        #self.iconbitmap('./HAL9000.ico')
+
+
+
 
         #print(self.geometry())
         self.geometry(newGeometry='550x400+100+100')
